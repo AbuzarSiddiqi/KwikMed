@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diabetes Prediction & Information System</title>
+    <link rel="stylesheet" href="diabetes.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Diabetes Prediction System</h2>
+
+      <div class="info-panel">
+        <h3>About Diabetes</h3>
+        <p>
+          Diabetes is a chronic condition characterized by high blood sugar
+          levels. Understanding risk factors can help with early prevention.
+        </p>
+        <button id="infoBtn" class="secondary-btn">
+          Learn About Risk Factors
+        </button>
+      </div>
+
+      <form id="diabetesForm">
+        <div class="form-group">
+          <label for="Pregnancies">Number of Pregnancies:</label>
+          <input
+            type="number"
+            id="Pregnancies"
+            placeholder="Enter 0 If you're a man"
+            required
+            min="0"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="Glucose">Glucose Level (mg/dL):</label>
+          <input
+            type="number"
+            id="Glucose"
+            placeholder="70-120"
+            required
+            min="0"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="BloodPressure">Blood Pressure (mm Hg):</label>
+          <input
+            type="number"
+            id="BloodPressure"
+            placeholder="70-90"
+            required
+            min="0"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="SkinThickness">Skin Thickness (mm):</label>
+          <input
+            type="number"
+            id="SkinThickness"
+            placeholder="10-50"
+            required
+            min="0"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="Insulin">Insulin Level (μU/ml):</label>
+          <input
+            type="number"
+            id="Insulin"
+            placeholder="0-300"
+            required
+            min="0"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="BMI">Body Mass Index (BMI):</label>
+          <input
+            type="number"
+            id="BMI"
+            placeholder="18.5-25"
+            step="0.1"
+            required
+            min="0"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="DiabetesPedigreeFunction"
+            >Diabetes Pedigree Function:</label
+          >
+          <input
+            type="number"
+            id="DiabetesPedigreeFunction"
+            placeholder="0.1-2.5"
+            step="0.01"
+            required
+            min="0"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="Age">Age (years):</label>
+          <input type="number" id="Age" placeholder="18-80" required min="0" />
+        </div>
+
+        <div class="form-group">
+          <label for="PatientName">Patient Name:</label>
+          <input
+            type="text"
+            id="PatientName"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+
+        <button type="submit" class="primary-btn">Predict</button>
+      </form>
+
+      <div id="resultContainer" class="hidden">
+        <h3 id="result"></h3>
+        <div id="factors" class="risk-factors"></div>
+        <button id="downloadBtn" class="secondary-btn">
+          Download Medical Report
+        </button>
+      </div>
+
+      <div id="infoModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h3>Diabetes Risk Factors</h3>
+          <ul>
+            <li>
+              <strong>High Glucose Levels:</strong> Persistent high blood sugar
+              (>125 mg/dL fasting) indicates impaired insulin function.
+            </li>
+            <li>
+              <strong>Diabetes Pedigree Function:</strong> Reflected in the
+              Diabetes Pedigree Function - higher values indicate stronger
+              genetic predisposition. <br />
+              <br />
+              Steps to Calculate Your Diabetes Pedigree Function (DPF): <br />
+              1. Assign Weights Based on Family Members with Diabetes: <br />
+              • Father: 0.5 • Mother: 0.5 • Each Sibling: 0.25 <br />
+              • Each Grandparent: 0.125 • Each Aunt/Uncle: 0.1 <br />
+              2. Sum the Weights of affected family members. <br />
+              3. Normalize (if needed): Ensure the value stays within the
+              typical range (0.1 - 2.5).
+            </li>
+            <li>
+              <strong>BMI:</strong> BMI > 30 significantly increases diabetes
+              risk. <br />
+              <br />
+              Steps to Find BMI: <br />
+              1. Enter Your Weight in Kilograms. <br />
+              2. Enter Your Height in Centimeters. <br />
+              3. Convert Height to Meters by dividing the height in centimeters
+              by 100. <br />
+              4. Square the Height in Meters (multiply height by itself). <br />
+              5. Divide the Weight by the Squared Height to get your BMI. <br />
+              6. Interpret the Result using BMI categories: <br />
+              • Below 18.5 → Underweight <br />
+              • 18.5 to 24.9 → Normal weight <br />
+              • 25 to 29.9 → Overweight <br />
+              • 30 and above → Obese
+            </li>
+            <li>
+              <strong>Age:</strong> Risk increases with age, particularly after
+              45.
+            </li>
+            <li>
+              <strong>High Blood Pressure:</strong> Often correlates with
+              insulin resistance.
+            </li>
+            <li>
+              <strong>Gestational Diabetes:</strong> Previous occurrences
+              increase future risk.
+            </li>
+            <li>
+              <strong>Physical Inactivity:</strong> Reduces insulin sensitivity.
+            </li>
+            <li>
+              <strong>Insulin Resistance:</strong> Indicated by high insulin
+              levels with normal/high glucose.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="reportTemplate" class="hidden">
+        <div class="report-header">
+          <div class="hospital-logo">KwikMed</div>
+          <div class="report-title">Diabetes Risk Assessment Report</div>
+          <div class="report-date" id="reportDate"></div>
+        </div>
+
+        <div class="patient-info">
+          <p>
+            <strong>Patient Name:</strong> <span id="reportPatientName"></span>
+          </p>
+          <p><strong>Report ID:</strong> <span id="reportID"></span></p>
+          <p>
+            <strong>Assessment Date:</strong> <span id="assessmentDate"></span>
+          </p>
+        </div>
+
+        <div class="assessment-results">
+          <h3>Assessment Results</h3>
+          <p id="reportResult"></p>
+          <div id="reportFactors"></div>
+        </div>
+
+        <div class="measurements">
+          <h3>Clinical Measurements</h3>
+          <table>
+            <tr>
+              <th>Parameter</th>
+              <th>Value</th>
+              <th>Reference Range</th>
+              <th>Status</th>
+            </tr>
+            <tr id="glucoseRow">
+              <td>Glucose (mg/dL)</td>
+              <td id="reportGlucose"></td>
+              <td>70-99 mg/dL (fasting)</td>
+              <td id="glucoseStatus"></td>
+            </tr>
+            <tr id="bpRow">
+              <td>Blood Pressure (mm Hg)</td>
+              <td id="reportBP"></td>
+              <td>120/80 mm Hg</td>
+              <td id="bpStatus"></td>
+            </tr>
+            <tr id="bmiRow">
+              <td>BMI</td>
+              <td id="reportBMI"></td>
+              <td>18.5-24.9</td>
+              <td id="bmiStatus"></td>
+            </tr>
+            <tr id="insulinRow">
+              <td>Insulin (μU/ml)</td>
+              <td id="reportInsulin"></td>
+              <td>25 μU/ml (fasting)</td>
+              <td id="insulinStatus"></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="recommendations">
+          <h3>Recommendations</h3>
+          <div id="reportRecommendations"></div>
+        </div>
+
+        <div class="report-footer">
+          <p>
+            This report is generated by an automated system using Dataset and
+            should be reviewed by a healthcare professional. It does not
+            constitute a medical diagnosis.
+          </p>
+          <p>KwikMed | Vit Vellore | Phone: 7561947020</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="diabetes.js"></script>
+  </body>
+</html>

@@ -1,0 +1,276 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, hsl(134, 91%, 62%), #a9dc87, hsl(134, 76%, 68%));
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+    margin: 20px auto;
+  }
+  
+  h2 {
+    color: #145A32;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #34495e;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dce0e6;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    font-size: 16px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s;
+  }
+  
+  input:focus {
+    border-color: #0bc841;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  }
+  
+  .primary-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #0bc614;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+  }
+  
+  .primary-btn:hover {
+    background-color: #028704;
+  }
+  
+  .secondary-btn {
+    padding: 10px 15px;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+    margin-top: 15px;
+  }
+  
+  .secondary-btn:hover {
+    background-color: #dfe6e9;
+    border-color: #95a5a6;
+  }
+  
+  #result {
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  .risk-factors {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #eef5fa;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  
+  .risk-factors ul {
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  
+  .risk-factors li {
+    margin-bottom: 8px;
+  }
+  
+  .info-panel {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .info-panel p {
+    margin-bottom: 15px;
+    color: #546e7a;
+  }
+  
+  /* Modal styles */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #7f8c8d;
+    transition: color 0.3s;
+  }
+  
+  .close:hover {
+    color: #34495e;
+  }
+  
+  .modal h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  .modal ul {
+    padding-left: 20px;
+    color: #34495e;
+  }
+  
+  .modal li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  
+  /* Report PDF styles */
+  #reportTemplate {
+    width: 100%;
+    max-width: 800px;
+    padding: 40px;
+    background-color: white;
+    box-sizing: border-box;
+  }
+  
+  .report-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 20px;
+  }
+  
+  .hospital-logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .report-title {
+    font-size: 22px;
+    color: #34495e;
+    margin-bottom: 5px;
+  }
+  
+  .patient-info {
+    margin-bottom: 30px;
+  }
+  
+  .assessment-results, .measurements, .recommendations {
+    margin-bottom: 30px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+  }
+  
+  .report-footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+    color: #7f8c8d;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+    }
+    
+    .modal-content {
+      width: 95%;
+      padding: 20px;
+    }
+    
+    table {
+      font-size: 14px;
+    }
+    
+    th, td {
+      padding: 8px;
+    }
+  }

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Disease Predictor</title>
+    <link rel="stylesheet" href="heart.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Heart Disease Risk Predictor</h1>
+        <p>
+          Enter your medical information for a heart disease risk assessment
+        </p>
+      </div>
+
+      <div class="form-container">
+        <form id="heartDiseaseForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" placeholder="1-120 years" required />
+            </div>
+            <div class="form-group">
+              <label for="sex">Sex</label>
+              <select id="sex" name="sex" required>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cp">Chest Pain Type</label>
+              <select id="cp" name="cp" required>
+                <option value="0">Typical Angina</option>
+                <option value="1">Atypical Angina</option>
+                <option value="2">Non-anginal Pain</option>
+                <option value="3">Asymptomatic</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="trestbps">Resting Blood Pressure (mm Hg)</label>
+              <input type="number" id="trestbps" name="trestbps" placeholder="80-200 mm Hg" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="chol">Cholesterol (mg/dl)</label>
+              <input type="number" id="chol" name="chol" placeholder="100-400 mg/dl" required />
+            </div>
+            <div class="form-group">
+              <label for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
+              <select id="fbs" name="fbs" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="restecg">Resting ECG Results</label>
+              <select id="restecg" name="restecg" required>
+                <option value="0">Normal</option>
+                <option value="1">ST-T Wave Abnormality</option>
+                <option value="2">Left Ventricular Hypertrophy</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="thalach">Maximum Heart Rate</label>
+              <input type="number" id="thalach" name="thalach" placeholder="60-220 bpm" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="exang">Exercise Induced Angina</label>
+              <select id="exang" name="exang" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="oldpeak">ST Depression</label>
+              <input
+                type="number"
+                id="oldpeak"
+                name="oldpeak"
+                step="0.1"
+                placeholder="0.0-6.0"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="PatientName">Patient Name:</label>
+              <input
+                type="text"
+                id="PatientName"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Predict Risk</button>
+            <button type="button" id="generateReport" class="btn btn-secondary">
+              Generate Report
+            </button>
+          </div>
+        </form>
+      </div>
+
+
+      <div id="result" class="result-container"></div>
+      <div id="report" class="report-container"></div>
+    </div>
+
+    <script src="heart.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  </body>
+</html>
