@@ -7,7 +7,8 @@
     <style>
         body{
            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-           display: flex;
+           display: block;
+           text-align: center;
            flex-direction: column;
            justify-content: center;
            align-items: center;
@@ -58,7 +59,7 @@
            color: #34495e;
         }
         input{
-            width: 100%;
+            width: calc(100% - 20px);
             padding: 12px;
             border: 1px solid #dce0e6;
             border-radius: 6px;
@@ -105,7 +106,7 @@
         .popup {
             display: none;
             position: fixed;
-            top: 50%;
+            top: 30%;
             left: 50%;
             transform: translate(-50%, -50%);
             background: rgb(253, 255, 253);
@@ -113,9 +114,10 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-            width: 500px;
+            width: 90%;
             text-align: center;
             z-index: 1000;
+            max-width: 400px;
         }
         .overlay {
             display: none;
@@ -132,7 +134,7 @@
             h2{
                 font-size: 1.8rem;
             }
-            #containter, #info-panel, form{
+            #container, #info-panel, form{
                 width: 90%;
                 padding: 20px;
             }
@@ -147,6 +149,7 @@
             }
         }
         
+
 
        
     </style>
