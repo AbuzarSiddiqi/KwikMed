@@ -1,4 +1,6 @@
 # KwikMed
+<div align="center"> <img src="readme_image/image.png" alt="Login Screen" /> </div>
+
 Hospital Management Website
 KwikMed is a modern healthcare platform designed to provide efficient and seamless medical services. Our goal is to simplify healthcare access by integrating technology with medical expertise, ensuring patients receive timely consultations, prescriptions, and healthcare assistance.
 link- https://abuzarsiddiqi.github.io/KwikMed/   
