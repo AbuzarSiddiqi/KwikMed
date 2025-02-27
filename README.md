@@ -1,5 +1,4 @@
 # KwikMed
-<div align="center"> <img src="readme_image/image.png" alt="Login Screen" /> </div>
 <div align="center"> <img src="readme_image/image1.png"  /> </div>
 <div align="center"> <img src="readme_image/image2.png"  /> </div>
 <div align="center"> <img src="readme_image/image3.png"  /> </div>
