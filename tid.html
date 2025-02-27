@@ -43,6 +43,7 @@
       }
     }
 
+
     /* Test box styling */
     .test-card {
       transition: transform 0.3s;
@@ -50,13 +51,29 @@
       border-radius: 1rem;
       padding: 20px;
       text-align: center;
-      background-color: #f9f9f9;
+      background-color: #f9f9f9;  
+      position: relative;
+      height: 200px;
+      width: 260px;
+      
     }
+    .test-card img {
+      height: 100px;
+      width: 100px; /* Small size */
+      filter: drop-shadow(10px 10px 10px rgba(104, 110, 105, 0.5));
+      transition: transform 0.3s ease-in-out;
+   } 
+   
+
+    .test-card:hover img {
+    transform: scale(1.5); /* Enlarge the QR code on hover */
+    }   
 
     .test-card:hover {
       transform: translateY(-15px);
       box-shadow: 0 4px 8px rgba(64, 187, 52, 1);
     }
+
 
     .test-icon {
       font-size: 40px;
@@ -65,6 +82,7 @@
     }
     h5{
       color: #198754;
+      margin: 20px;
     }
     a{
       text-decoration: none;
@@ -84,7 +102,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img style="height: 7rem; width: 15rem;" src="images/logo.png" alt="Logo"></a>
+      <a class="navbar-brand" href="#"><img style=" width: 15rem;" src="images/logo.png" alt="Logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -122,7 +140,7 @@
         <div class="test-card">
           <div class="test-icon">
            
-            <img src="Test Information Directory/bmi.png" alt="Diabetes Test" height="60px">
+            <img src="Test Information Directory/image/bmi.png" alt="Diabetes Test" height="60px">
           </div>
           <h5>BMI Calculator</h5>
         </div></a>
@@ -132,7 +150,7 @@
         <div class="test-card">
           <div class="test-icon">
            
-            <img src="Test Information Directory/diabetes.png" alt="Diabetes Test" height="60px">
+            <img src="Test Information Directory/image/diabetes.png" alt="Diabetes Test" height="60px">
           </div>
           <h5>Diabetes Test</h5>
         </div></a>
@@ -141,7 +159,7 @@
         <a href="Test Information Directory/heart/heart.html">
         <div class="test-card">
           <div class="test-icon">
-            <img src="Test Information Directory/heart.png" alt="Blood Test" height="60px">
+            <img src="Test Information Directory/image/heart.png" alt="Blood Test" height="60px">
           </div>
           <h5>Heart Disease Test</h5>
         </div></a>
@@ -150,7 +168,7 @@
         <a href="Test Information Directory/xray/xray.html">
         <div class="test-card">
           <div class="test-icon">
-            <img src="Test Information Directory/xray.png" alt="X-Ray" height="60px">
+            <img src="Test Information Directory/image/xray.png" alt="X-Ray" height="60px">
           </div>
           <h5>X-Ray</h5>
         </div></a>
@@ -159,7 +177,7 @@
         <a href="Test Information Directory/ctscan/ctscan.html">
         <div class="test-card">
           <div class="test-icon">
-            <img src="Test Information Directory/ctscan.webp" alt="CT Scan" height="60px">
+            <img src="Test Information Directory/image/ctscan.webp" alt="CT Scan" height="60px">
           </div>
           <h5>CT Scan</h5>
         </div></a>
@@ -168,7 +186,7 @@
         <a href="Test Information Directory/mriScan/mriScan.html">
         <div class="test-card">
           <div class="test-icon">
-            <img src="Test Information Directory/mri.png" alt="MRI Scan" height="60px">
+            <img src="Test Information Directory/image/mri.png" alt="MRI Scan" height="60px">
           </div>
           <h5>MRI Scan</h5>
         </div></a>
@@ -177,7 +195,7 @@
         <a href="Test Information Directory/thyroid/thyroid.html">
         <div class="test-card">
           <div class="test-icon">
-            <img src="Test Information Directory/thyroid.png" alt="Thyroid Test" height="60px">
+            <img src="Test Information Directory/image/thyroid.png" alt="Thyroid Test" height="60px">
           </div>
           <h5>Thyroid Report</h5>
         </div></a>
@@ -186,14 +204,14 @@
         <a href="Test Information Directory/prescribedMed/prescription.html">
         <div class="test-card">
           <div class="test-icon">
-            <img src="Test Information Directory/prescribed.png" alt="Heart Checkup" height="60px">
+            <img src="Test Information Directory/image/prescribed.png" alt="Heart Checkup" height="60px">
           </div>
           <h5>Prescribed Medicine</h5>
         </div></a>
       </div>
 
   <!-- Footer -->
-  <footer class="bg-body-tertiary text-center py-4 mt-5">
+  <footer class="bg-body-tertiary text-center py-4 mt-5 position-absolute bottom-0 end-0">
     <div class="container">
       <p class="mb-0">© 2025 kwikmed. All Rights Reserved.</p>
       <p>Follow us on:
