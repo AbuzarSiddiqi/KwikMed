@@ -1,8 +1,11 @@
 # KwikMed
-It is a hospital Management Website
-KwikMed is a modern healthcare platform designed to provide efficient and seamless medical services. Our goal is to simplify healthcare access by integrating technology with medical expertise, ensuring patients receive timely consultations, prescriptions, and healthcare assistance.
+<div align="center"> <img src="readme_image/image.png" alt="Login Screen" /> </div>
+<div align="center"> <img src="readme_image/image1.png"  /> </div>
+<div align="center"> <img src="readme_image/image2.png"  /> </div>
+<div align="center"> <img src="readme_image/image3.png"  /> </div>
 
-Features
+Hospital Management Website
+KwikMed is a modern healthcare platform designed to provide efficient and seamless medical services. Our goal is to simplify healthcare access by integrating technology with medical expertise, ensuring patients receive timely consultations, prescriptions, and healthcare assistance.
 
 Online Appointment Booking – Schedule consultations with doctors instantly.
 
