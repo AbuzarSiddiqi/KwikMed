@@ -35,6 +35,27 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
+      /* Feature card hover effect */
+      .feature-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+        height: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        background-color: #f8fffa;
+      }
+
+      .feature-card .feature-icon {
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover .feature-icon {
+        background: #d4edff;
+      }
+
       /* navbar responsive for buttom */
       @media (max-width: 991px) {
         .mobile-buttons {
@@ -50,10 +71,12 @@
 
   <body>
     <!-- Navbar -->
-     
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img style=" width: 15rem;" src="images/logo.png" alt="Logo"/></a>
+        <a class="navbar-brand" href="#"
+          ><img style="width: 15rem" src="images/logo.png" alt="Logo"
+        /></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -96,7 +119,7 @@
           <h1 class="fw-bold mb-4">
             Excellence Starts Here:<br />Your Guide to a Safe, Healthier Life
           </h1>
-          <button class="btn btn-success btn-lg">Book Now</button>
+          <a href="appointment.html" class="btn btn-success btn-lg">Book Now</a>
         </div>
         <div
           class="col-md-6 hero-bg d-flex justify-content-center align-items-center"
@@ -111,53 +134,67 @@
       <!-- Features Section -->
       <div class="row text-center my-5">
         <div class="col-md-3 mb-3">
-          <div class="p-3 bg-white rounded shadow-sm">
-            <div class="feature-icon mx-auto mb-3">
-              <span class="material-icons"
-                ><img
-                  src="images/doctor1.png"
-                  alt="medical_services"
-                  height="110px"
-              /></span>
-            </div>
-            <h5 class="fw-semibold mb-2">Medical Consults</h5>
-            <p class="text-muted">Flexible appointment scheduling</p>
+          <div class="p-3 bg-white rounded shadow-sm feature-card">
+            <a
+              href="appointment.html"
+              style="text-decoration: none; color: inherit"
+            >
+              <div class="feature-icon mx-auto mb-3">
+                <span class="material-icons"
+                  ><img
+                    src="images/doctor1.png"
+                    alt="medical_services"
+                    height="110px"
+                /></span>
+              </div>
+              <h5 class="fw-semibold mb-2">Medical Consults</h5>
+              <p class="text-muted">Book Appointment</p>
+            </a>
           </div>
         </div>
         <div class="col-md-3 mb-3">
-          <div class="p-3 bg-white rounded shadow-sm">
-            <div class="feature-icon mx-auto mb-3">
-              <span class="material-icons"
-                ><img src="images/lab.png" alt="medical_services" height="90px"
-              /></span>
+          <a
+            href="testservices.html"
+            style="text-decoration: none; color: inherit"
+          >
+            <div class="p-3 bg-white rounded shadow-sm feature-card">
+              <div class="feature-icon mx-auto mb-3">
+                <span class="material-icons"
+                  ><img
+                    src="images/lab.png"
+                    alt="medical_services"
+                    height="90px"
+                /></span>
+              </div>
+              <h5 class="fw-semibold mb-2">Tests & Services</h5>
+              <p class="text-muted">Book a Lab Visit or Home Visit</p>
             </div>
-            <h5 class="fw-semibold mb-2">Tests & Services</h5>
-            <p class="text-muted">Book a Lab Visit or Home Visit</p>
-          </div>
+          </a>
         </div>
         <div class="col-md-3 mb-3">
-          <div class="p-3 bg-white rounded shadow-sm">
-            <div class="feature-icon mx-auto mb-3">
-              <a href="tid.html">
+          <div class="p-3 bg-white rounded shadow-sm feature-card">
+            <a href="tid.html" style="text-decoration: none; color: inherit">
+              <div class="feature-icon mx-auto mb-3">
                 <span class="material-icons"
                   ><img
                     src="images/test.png"
                     alt="medical_services"
-                    height="90px" /></span
-              ></a>
-            </div>
-            <h5 class="fw-semibold mb-2">Test information directory</h5>
-            <p class="text-muted">Best-in-class medical services</p>
+                    height="90px"
+                /></span>
+              </div>
+              <h5 class="fw-semibold mb-2">Test information directory</h5>
+              <p class="text-muted">Best-in-class medical services</p>
+            </a>
           </div>
         </div>
 
         <div class="col-md-3 mb-3">
-          <div class="p-3 bg-white rounded shadow-sm">
-            <div
-              class="feature-icon mx-auto mb-3"
-              data-bs-toggle="modal"
-              data-bs-target="#ambulanceModal"
-            >
+          <div
+            class="p-3 bg-white rounded shadow-sm feature-card"
+            data-bs-toggle="modal"
+            data-bs-target="#ambulanceModal"
+          >
+            <div class="feature-icon mx-auto mb-3">
               <span class="material-icons"
                 ><img
                   src="images/ambulance.png"
@@ -391,7 +428,7 @@
 
     <script>
       function fetchLocation() {
-        if (navigator.geolocation) {
+        if (navigator.g / eolocation) {
           navigator.geolocation.getCurrentPosition(
             function (position) {
               const latitude = position.coords.latitude;

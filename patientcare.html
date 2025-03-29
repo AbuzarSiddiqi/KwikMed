@@ -1,341 +1,659 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hospital Management System</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <style>
-    .hero-bg {
-      background-color: #FFF8E7;
-      border-radius: 2rem;
-    }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      background: #E6F3FF;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .service-card {
-      transition: all 0.3s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Navbar responsive for button */
-    @media (max-width: 991px) {
-      .mobile-buttons {
-        width: 30% !important;
-        align-items: flex-start !important;
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 10px !important;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital Search - kwikMed</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      .hero-bg {
+        background-color: #fff8e7;
+        border-radius: 2rem;
       }
-    }
 
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        background: #e6f3ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
+      .service-card {
+        transition: all 0.3s ease;
+      }
 
-    /*-------------------------------------------------------------------------- */
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
+      /* Navbar responsive for button */
+      @media (max-width: 991px) {
+        .mobile-buttons {
+          width: 30% !important;
+          align-items: flex-start !important;
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 10px !important;
+        }
+      }
 
-    .container1 {
-      max-width: 400px;
-      height: 500px;
-      margin: 50px auto;
-      padding: 20px;
-      background: rgb(229, 246, 243);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
+      /*-------------------------------------------------------------------------- */
 
-    h2 {
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-      color: #333;
-    }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
 
-    .search-box {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+      .search-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 30px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
 
-    select,
-    button {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
+      h2 {
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        color: #198754;
+        margin-bottom: 30px;
+      }
 
-    button {
-      background-color: #28a745;
-      color: white;
-      cursor: pointer;
-    }
+      .search-box {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 500px;
+        margin: 0 auto;
+      }
 
-    button:hover {
-      background-color: #218838;
-    }
+      select,
+      button {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
 
-    #result {
-      margin-top: 20px;
-      text-align: left;
-    }
+      select {
+        background-color: #f9f9f9;
+      }
 
-    .hospital-card {
-      padding: 10px;
-      margin-top: 10px;
-      background: #fff;
-      border-left: 5px solid #28a745;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    }
-  </style>
-</head>
+      button {
+        background-color: #28a745;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
 
-<body>
+      button:hover {
+        background-color: #218838;
+      }
 
+      #result {
+        margin-top: 30px;
+        text-align: left;
+      }
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img style="width: 15rem;" src="images/logo.png" alt="Logo"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.html#services">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About Us</a>
-          </li>
-        </ul>
+      .hospital-card {
+        padding: 20px;
+        margin-top: 15px;
+        background: #fff;
+        border-left: 5px solid #28a745;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        transition: transform 0.3s;
+      }
 
-        <div class="d-grid d-md-flex" id="navbarButtons">
-          <div class="mobile-buttons">
-            <a class="btn btn-success mb-2" href="#">Sign In</a>
-            <a class="btn btn-success mb-2" href="#">Sign Up</a>
-            <a class="btn btn-success mb-2" href="index.html#contactus">Contact Us</a>
+      .hospital-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .hospital-card h3 {
+        color: #28a745;
+        margin-bottom: 10px;
+      }
+
+      .hospital-card p {
+        margin-bottom: 5px;
+        color: #555;
+      }
+
+      @media (max-width: 768px) {
+        .search-container {
+          padding: 20px;
+          margin: 30px 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><img style="width: 15rem" src="images/logo.png" alt="Logo"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Us</a>
+            </li>
+          </ul>
+
+          <div class="d-grid d-md-flex" id="navbarButtons">
+            <div class="mobile-buttons">
+              <a class="btn btn-success mb-2" href="#">Sign In</a>
+              <a class="btn btn-success mb-2" href="#">Sign Up</a>
+              <a class="btn btn-success mb-2" href="index.html#contactus"
+                >Contact Us</a
+              >
+            </div>
           </div>
         </div>
       </div>
+    </nav>
+
+    <!-- Hospital Search Section -->
+    <div class="search-container">
+      <h2>Find the Best Hospital for Your Needs</h2>
+
+      <div class="search-box">
+        <select id="stateSelect" onchange="updateCities()">
+          <option value="">Select State</option>
+          <option value="Bihar">Bihar</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="West Bengal">West Bengal</option>
+          <option value="Gujarat">Gujarat</option>
+          <option value="Rajasthan">Rajasthan</option>
+          <option value="Madhya Pradesh">Madhya Pradesh</option>
+          <option value="Punjab">Punjab</option>
+        </select>
+
+        <select id="citySelect" onchange="updateDiseases()" disabled>
+          <option value="">Select City</option>
+        </select>
+
+        <select id="diseaseSelect" disabled>
+          <option value="">Select Specialization</option>
+        </select>
+
+        <button onclick="searchHospital()">Search Hospitals</button>
+      </div>
+
+      <div id="result"></div>
     </div>
-  </nav>
-  <!-- content box iske under hi kaam krna -->
 
+    <!-- Footer -->
+    <footer class="bg-body-tertiary text-center py-4 mt-5">
+      <div class="container">
+        <p class="mb-0">© 2025 kwikmed. All Rights Reserved.</p>
+        <p>
+          Follow us on: <a href="#" class="text-success ms-2">Facebook</a> |
+          <a href="#" class="text-success ms-2">Twitter</a> |
+          <a href="#" class="text-success ms-2">Instagram</a>
+        </p>
+      </div>
+    </footer>
 
+    <script>
+      const cityData = {
+        Bihar: ["Patna", "Gaya", "Kisanganj"],
+        Maharashtra: ["Mumbai", "Pune", "Nagpur"],
+        Karnataka: ["Bangalore", "Mysore", "Hubli"],
+        "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
+        Delhi: ["New Delhi", "South Delhi", "Dwarka"],
+        "Uttar Pradesh": ["Lucknow", "Kanpur", "Agra"],
+        "West Bengal": ["Kolkata", "Howrah", "Durgapur"],
+        Gujarat: ["Ahmedabad", "Surat", "Vadodara"],
+        Rajasthan: ["Jaipur", "Udaipur", "Jodhpur"],
+        "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior"],
+        Punjab: ["Ludhiana", "Amritsar", "Jalandhar"],
+      };
 
-  <div class="container1">
-    <h2>Find the Best Hospital</h2>
+      const diseaseData = {
+        Patna: ["Cardiology", "Neurology", "Oncology", "Gastroenterology"],
+        Gaya: ["Neurology", "Cardiology", "Endocrinology", "Orthopedics"],
+        Kisanganj: ["Dermatology", "Urology", "Oncology", "Pediatrics"],
+        Mumbai: ["Cardiology", "Neurology", "Oncology", "Pulmonology"],
+        Pune: [
+          "Gastroenterology",
+          "Nephrology",
+          "Endocrinology",
+          "Rheumatology",
+        ],
+        Nagpur: ["Nephrology", "Urology", "Neurosurgery", "Cardiology"],
+        Bangalore: ["Cardiology", "Orthopedics", "Hepatology", "Oncology"],
+        Mysore: ["Hepatology", "Cardiology", "Neurology", "Pediatrics"],
+        Hubli: ["Pediatrics", "ENT", "Ophthalmology", "Dermatology"],
+        Chennai: ["Dermatology", "Urology", "Oncology", "Nephrology"],
+        Coimbatore: ["Urology", "Cardiology", "Gynecology", "Orthopedics"],
+        Madurai: ["ENT", "Ophthalmology", "Neurology", "Dermatology"],
+        "New Delhi": ["Neurology", "Cardiology", "Endocrinology", "Oncology"],
+        "South Delhi": [
+          "Endocrinology",
+          "Pulmonology",
+          "Gastroenterology",
+          "Dermatology",
+        ],
+        Dwarka: ["Psychiatry", "Pediatrics", "Orthopedics", "Cardiology"],
+        Lucknow: ["Pediatrics", "Psychiatry", "ENT", "Neurology"],
+        Kolkata: ["Oncology", "Neurosurgery", "Hematology", "Cardiology"],
+        Ahmedabad: [
+          "Neurosurgery",
+          "Cardiology",
+          "Gastroenterology",
+          "Orthopedics",
+        ],
+        Jaipur: ["Pediatrics", "Psychiatry", "Nephrology", "Oncology"],
+        Bhopal: ["Dermatology", "ENT", "Hematology", "Cardiology"],
+      };
 
-    <div class="search-box">
-      <select id="stateSelect" onchange="updateCities()">
-        <option value="">Select State</option>
-        <option value="Bihar">Bihar</option>
-        <option value="Maharashtra">Maharashtra</option>
-        <option value="Karnataka">Karnataka</option>
-        <option value="Tamil Nadu">Tamil Nadu</option>
-        <option value="Delhi">Delhi</option>
-        <option value="Uttar Pradesh">Uttar Pradesh</option>
-        <option value="West Bengal">West Bengal</option>
-        <option value="Gujarat">Gujarat</option>
-        <option value="Rajasthan">Rajasthan</option>
-        <option value="Madhya Pradesh">Madhya Pradesh</option>
-        <option value="Punjab">Punjab</option>
-      </select>
+      const hospitals = [
+        {
+          state: "Bihar",
+          city: "Patna",
+          disease: "Cardiology",
+          name: "Vedenta Hospital",
+          address: "Kankarbagh, Patna",
+          contact: "9988776655",
+          rating: 4.5,
+        },
+        {
+          state: "Bihar",
+          city: "Patna",
+          disease: "Neurology",
+          name: "AIIMS Patna",
+          address: "Phulwari Sharif, Patna",
+          contact: "9876543210",
+          rating: 4.7,
+        },
+        {
+          state: "Bihar",
+          city: "Gaya",
+          disease: "Neurology",
+          name: "Apollo Hospital",
+          address: "Nadiyapar, Gaya",
+          contact: "9876543210",
+          rating: 4.8,
+        },
+        {
+          state: "Bihar",
+          city: "Gaya",
+          disease: "Cardiology",
+          name: "Gaya Heart Institute",
+          address: "Central Gaya",
+          contact: "8765435678",
+          rating: 4.4,
+        },
+        {
+          state: "Bihar",
+          city: "Kisanganj",
+          disease: "Dermatology",
+          name: "AIIMS",
+          address: "Kisanganj Medical District",
+          contact: "8765432109",
+          rating: 4.9,
+        },
+        {
+          state: "Bihar",
+          city: "Kisanganj",
+          disease: "Oncology",
+          name: "Cancer Care Institute",
+          address: "North Kisanganj",
+          contact: "7654321890",
+          rating: 4.6,
+        },
+        {
+          state: "Maharashtra",
+          city: "Mumbai",
+          disease: "Cardiology",
+          name: "Lilavati Hospital",
+          address: "Bandra West, Mumbai",
+          contact: "9876543210",
+          rating: 4.7,
+        },
+        {
+          state: "Maharashtra",
+          city: "Mumbai",
+          disease: "Neurology",
+          name: "Kokilaben Dhirubhai Ambani Hospital",
+          address: "Andheri West, Mumbai",
+          contact: "8765432109",
+          rating: 4.8,
+        },
+        {
+          state: "Maharashtra",
+          city: "Mumbai",
+          disease: "Oncology",
+          name: "Tata Memorial Hospital",
+          address: "Parel, Mumbai",
+          contact: "9876543211",
+          rating: 4.9,
+        },
+        {
+          state: "Maharashtra",
+          city: "Pune",
+          disease: "Endocrinology",
+          name: "Ruby Hall Clinic",
+          address: "Pune East",
+          contact: "7654321098",
+          rating: 4.6,
+        },
+        {
+          state: "Maharashtra",
+          city: "Pune",
+          disease: "Gastroenterology",
+          name: "Sahyadri Hospital",
+          address: "Deccan, Pune",
+          contact: "8654321098",
+          rating: 4.5,
+        },
+        {
+          state: "Maharashtra",
+          city: "Nagpur",
+          disease: "Nephrology",
+          name: "AIIMS Nagpur",
+          address: "Central Nagpur",
+          contact: "7654321099",
+          rating: 4.7,
+        },
+        {
+          state: "Karnataka",
+          city: "Bangalore",
+          disease: "Cardiology",
+          name: "Fortis Hospital",
+          address: "Bangalore South",
+          contact: "6543210987",
+          rating: 4.8,
+        },
+        {
+          state: "Karnataka",
+          city: "Bangalore",
+          disease: "Orthopedics",
+          name: "Manipal Hospital",
+          address: "Whitefield, Bangalore",
+          contact: "8765432110",
+          rating: 4.9,
+        },
+        {
+          state: "Karnataka",
+          city: "Mysore",
+          disease: "Hepatology",
+          name: "Columbia Asia Hospital",
+          address: "Central Mysore",
+          contact: "9876543212",
+          rating: 4.6,
+        },
+        {
+          state: "Karnataka",
+          city: "Hubli",
+          disease: "Pediatrics",
+          name: "KIMS Hospital",
+          address: "Hubli Medical District",
+          contact: "8765432111",
+          rating: 4.5,
+        },
+        {
+          state: "Tamil Nadu",
+          city: "Chennai",
+          disease: "Oncology",
+          name: "Apollo Hospital",
+          address: "Chennai Center",
+          contact: "5432109876",
+          rating: 4.7,
+        },
+        {
+          state: "Tamil Nadu",
+          city: "Chennai",
+          disease: "Dermatology",
+          name: "Chennai Skin Institute",
+          address: "Anna Nagar, Chennai",
+          contact: "8765432112",
+          rating: 4.6,
+        },
+        {
+          state: "Tamil Nadu",
+          city: "Coimbatore",
+          disease: "Urology",
+          name: "PSG Hospitals",
+          address: "Peelamedu, Coimbatore",
+          contact: "7678901234",
+          rating: 4.7,
+        },
+        {
+          state: "Tamil Nadu",
+          city: "Madurai",
+          disease: "ENT",
+          name: "Meenakshi Mission Hospital",
+          address: "Lake Area, Madurai",
+          contact: "8765432113",
+          rating: 4.8,
+        },
+        {
+          state: "Delhi",
+          city: "New Delhi",
+          disease: "Neurology",
+          name: "AIIMS Delhi",
+          address: "New Delhi",
+          contact: "4321098765",
+          rating: 4.9,
+        },
+        {
+          state: "Delhi",
+          city: "New Delhi",
+          disease: "Cardiology",
+          name: "Fortis Escorts Heart Institute",
+          address: "Okhla, New Delhi",
+          contact: "6789012345",
+          rating: 4.8,
+        },
+        {
+          state: "Delhi",
+          city: "South Delhi",
+          disease: "Endocrinology",
+          name: "Max Super Speciality Hospital",
+          address: "Saket, South Delhi",
+          contact: "7890123456",
+          rating: 4.7,
+        },
+        {
+          state: "Delhi",
+          city: "Dwarka",
+          disease: "Psychiatry",
+          name: "Venkateshwar Hospital",
+          address: "Sector 18A, Dwarka",
+          contact: "8901234567",
+          rating: 4.6,
+        },
+        {
+          state: "Uttar Pradesh",
+          city: "Lucknow",
+          disease: "Pediatrics",
+          name: "Medanta Hospital",
+          address: "Lucknow",
+          contact: "3210987654",
+          rating: 4.6,
+        },
+        {
+          state: "West Bengal",
+          city: "Kolkata",
+          disease: "Oncology",
+          name: "Tata Medical Center",
+          address: "Kolkata",
+          contact: "2109876543",
+          rating: 4.7,
+        },
+        {
+          state: "Gujarat",
+          city: "Ahmedabad",
+          disease: "Cardiology",
+          name: "Zydus Hospital",
+          address: "Ahmedabad",
+          contact: "1098765432",
+          rating: 4.5,
+        },
+        {
+          state: "Rajasthan",
+          city: "Jaipur",
+          disease: "Psychiatry",
+          name: "SMS Hospital",
+          address: "Jaipur",
+          contact: "0987654321",
+          rating: 4.4,
+        },
+        {
+          state: "Madhya Pradesh",
+          city: "Bhopal",
+          disease: "ENT",
+          name: "Bansal Hospital",
+          address: "Bhopal",
+          contact: "9876543210",
+          rating: 4.3,
+        },
+      ];
 
-      <select id="citySelect" onchange="updateDiseases()" disabled>
-        <option value="">Select City</option>
-      </select>
+      function updateCities() {
+        let state = document.getElementById("stateSelect").value;
+        let citySelect = document.getElementById("citySelect");
 
-      <select id="diseaseSelect" disabled>
-        <option value="">Select Disease</option>
-      </select>
+        citySelect.innerHTML = '<option value="">Select City</option>';
+        if (state) {
+          cityData[state].forEach((city) => {
+            let option = document.createElement("option");
+            option.value = city;
+            option.textContent = city;
+            citySelect.appendChild(option);
+          });
+          citySelect.disabled = false;
+        } else {
+          citySelect.disabled = true;
+        }
 
-      <button onclick="searchHospital()">Search</button>
-    </div>
+        document.getElementById("diseaseSelect").disabled = true;
+        document.getElementById("diseaseSelect").innerHTML =
+          '<option value="">Select Specialization</option>';
+        document.getElementById("result").innerHTML = "";
+      }
 
-    <div id="result"></div>
-  </div>
+      function updateDiseases() {
+        let city = document.getElementById("citySelect").value;
+        let diseaseSelect = document.getElementById("diseaseSelect");
 
-  <!-- Footer -->
-  <footer class="bg-body-tertiary text-center py-4 mt-5">
-    <div class="container">
-      <p class="mb-0">© 2025 kwikmed. All Rights Reserved.</p>
-      <p>
-        Follow us on: <a href="#" class="text-success ms-2">Facebook</a> |
-        <a href="#" class="text-success ms-2">Twitter</a> |
-        <a href="#" class="text-success ms-2">Instagram</a>
-      </p>
-    </div>
-  </footer>
+        diseaseSelect.innerHTML =
+          '<option value="">Select Specialization</option>';
+        if (city) {
+          diseaseData[city].forEach((disease) => {
+            let option = document.createElement("option");
+            option.value = disease;
+            option.textContent = disease;
+            diseaseSelect.appendChild(option);
+          });
+          diseaseSelect.disabled = false;
+        } else {
+          diseaseSelect.disabled = true;
+        }
 
+        document.getElementById("result").innerHTML = "";
+      }
 
-  <script src="script.js"></script>
+      function searchHospital() {
+        let state = document.getElementById("stateSelect").value;
+        let city = document.getElementById("citySelect").value;
+        let disease = document.getElementById("diseaseSelect").value;
+        let resultDiv = document.getElementById("result");
 
-</body>
+        resultDiv.innerHTML = "";
 
-</html>
+        if (!state || !city || !disease) {
+          resultDiv.innerHTML =
+            "<p class='alert alert-warning'>Please select all fields to search for hospitals.</p>";
+          return;
+        }
 
+        let filteredHospitals = hospitals.filter(
+          (h) => h.state === state && h.city === city && h.disease === disease
+        );
 
+        if (filteredHospitals.length > 0) {
+          resultDiv.innerHTML = `<h3 class="mt-4 mb-3">Found ${filteredHospitals.length} hospital(s) for ${disease} in ${city}</h3>`;
 
+          filteredHospitals.forEach((h) => {
+            let stars = "";
+            for (let i = 0; i < 5; i++) {
+              if (i < Math.floor(h.rating)) {
+                stars += '<span class="text-warning">★</span>';
+              } else if (i === Math.floor(h.rating) && h.rating % 1 >= 0.5) {
+                stars += '<span class="text-warning">★</span>';
+              } else {
+                stars += '<span class="text-secondary">☆</span>';
+              }
+            }
 
+            resultDiv.innerHTML += `
+            <div class="hospital-card">
+              <h3>${h.name}</h3>
+              <p><strong>Address:</strong> ${h.address}</p>
+              <p><strong>Contact:</strong> ${h.contact}</p>
+              <p><strong>Rating:</strong> ${stars} (${h.rating})</p>
+              <a href="appointment.html?city=${encodeURIComponent(
+                city
+              )}&hospital=${encodeURIComponent(
+              h.name
+            )}&address=${encodeURIComponent(h.address)}&rating=${
+              h.rating
+            }&state=${encodeURIComponent(state)}&disease=${encodeURIComponent(
+              disease
+            )}" class="btn btn-success mt-2">Book Appointment</a>
+            </div>`;
+          });
+        } else {
+          resultDiv.innerHTML = `<p class='alert alert-info'>No hospitals found for ${disease} in ${city}, ${state}. Please try a different search.</p>`;
+        }
+      }
+    </script>
 
-
-
-
-
-
-
-
-
-<script>
-  const cityData = {
-    "Bihar": ["Patna", "Gaya", "Kisanganj"],
-    "Maharashtra": ["Mumbai", "Pune", "Nagpur"],
-    "Karnataka": ["Bangalore", "Mysore", "Hubli"],
-    "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
-    "Delhi": ["New Delhi", "South Delhi", "Dwarka"],
-    "Uttar Pradesh": ["Lucknow", "Kanpur", "Agra"],
-    "West Bengal": ["Kolkata", "Howrah", "Durgapur"],
-    "Gujarat": ["Ahmedabad", "Surat", "Vadodara"],
-    "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur"],
-    "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior"],
-    "Punjab": ["Ludhiana", "Amritsar", "Jalandhar"]
-  };
-
-  const diseaseData = {
-    "Patna": ["Dengue", "Malaria", "Chikungunya"],
-    "Gaya": ["Neurology", "Cardiology", "Endocrinology"],
-    "Kisanganj": ["Dermatology", "Urology", "Cancer"],
-    "Mumbai": ["Cardiology", "Neurology", "Cancer"],
-    "Pune": ["Gastroenterology", "Nephrology", "Diabetes"],
-    "Bangalore": ["Heart Disease", "Orthopedics", "Liver Disease"],
-    "Chennai": ["Dermatology", "Urology", "Cancer"],
-    "Delhi": ["Neurology", "Cardiology", "Endocrinology"],
-    "Lucknow": ["Pediatrics", "Psychiatry", "ENT"],
-    "Kolkata": ["Oncology", "Neurosurgery", "Hematology"],
-    "Ahmedabad": ["Neurosurgery", "Cardiology", "Gastroenterology"],
-    "Jaipur": ["Pediatrics", "Psychiatry", "Nephrology"],
-    "Bhopal": ["Dermatology", "ENT", "Hematology"]
-  };
-
-  const hospitals = [
-    { state: "Bihar", city: "Patna", disease: "Dengue", name: "Vedenta", address: "kankarbagh", gmail: "vedenta123@gmail.com", contact: "9988776655" },
-    { state: "Bihar", city: "Gaya", disease: "Neurology", name: "Apollo", address: "nadiyapar" },
-    { state: "Bihar", city: "Kisanganj", disease: "Dermatology", name: "Aiims", address: "kisanganj" },
-    { state: "Maharashtra", city: "Mumbai", disease: "Cardiology", name: "Lilavati Hospital", address: "Mumbai Central" },
-    { state: "Maharashtra", city: "Pune", disease: "Diabetes", name: "Ruby Hall Clinic", address: "Pune East" },
-    { state: "Karnataka", city: "Bangalore", disease: "Heart Disease", name: "Fortis Hospital", address: "Bangalore South" },
-    { state: "Tamil Nadu", city: "Chennai", disease: "Cancer", name: "Apollo Hospital", address: "Chennai Center" },
-    { state: "Delhi", city: "New Delhi", disease: "Neurology", name: "AIIMS", address: "New Delhi" },
-    { state: "Uttar Pradesh", city: "Lucknow", disease: "Pediatrics", name: "Medanta Hospital", address: "Lucknow" },
-    { state: "West Bengal", city: "Kolkata", disease: "Oncology", name: "Tata Medical", address: "Kolkata" },
-    { state: "Gujarat", city: "Ahmedabad", disease: "Cardiology", name: "Zydus Hospital", address: "Ahmedabad" },
-    { state: "Rajasthan", city: "Jaipur", disease: "Psychiatry", name: "SMS Hospital", address: "Jaipur" },
-    { state: "Madhya Pradesh", city: "Bhopal", disease: "ENT", name: "Bansal Hospital", address: "Bhopal" }
-  ];
-
-  function updateCities() {
-    let state = document.getElementById("stateSelect").value;
-    let citySelect = document.getElementById("citySelect");
-
-    citySelect.innerHTML = '<option value="">Select City</option>';
-    if (state) {
-      cityData[state].forEach(city => {
-        let option = document.createElement("option");
-        option.value = city;
-        option.textContent = city;
-        citySelect.appendChild(option);
-      });
-      citySelect.disabled = false;
-    } else {
-      citySelect.disabled = true;
-    }
-
-    document.getElementById("diseaseSelect").disabled = true;
-  }
-
-  function updateDiseases() {
-    let city = document.getElementById("citySelect").value;
-    let diseaseSelect = document.getElementById("diseaseSelect");
-
-    diseaseSelect.innerHTML = '<option value="">Select Disease</option>';
-    if (city) {
-      diseaseData[city].forEach(disease => {
-        let option = document.createElement("option");
-        option.value = disease;
-        option.textContent = disease;
-        diseaseSelect.appendChild(option);
-      });
-      diseaseSelect.disabled = false;
-    } else {
-      diseaseSelect.disabled = true;
-    }
-  }
-
-  function searchHospital() {
-    let state = document.getElementById("stateSelect").value;
-    let city = document.getElementById("citySelect").value;
-    let disease = document.getElementById("diseaseSelect").value;
-    let resultDiv = document.getElementById("result");
-
-    resultDiv.innerHTML = "";
-
-    let filteredHospitals = hospitals.filter(h => h.state === state && h.city === city && h.disease === disease);
-    filteredHospitals.length
-      ? filteredHospitals.forEach(h => resultDiv.innerHTML += `<div class="hospital-card"><h3>${h.name}</h3><p>${h.address}</p></div>`)
-      : resultDiv.innerHTML = "<p>No hospitals found.</p>";
-  }
-
-
-</script>
-
-</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
