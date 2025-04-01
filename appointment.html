@@ -1128,9 +1128,8 @@
           y
         );
 
-        // Format date to ensure it fits within PDF margins
-        const dateText = `Date: ${window.appointmentData.date.split(",")[0]}`;
-        doc.text(dateText, 140, y);
+        // Display the full date without splitting
+        doc.text(`Date: ${window.appointmentData.date}`, 140, y);
 
         // Patient details
         y += 15;
